@@ -1,0 +1,169 @@
+:root{
+  --bg: #050506;
+  --lantern: rgba(244, 162, 58, 1);
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* =========================
+   BACKGROUND SCENE
+   ========================= */
+
+.scene{
+  position: fixed;
+  inset: 0;
+  background-image: url("../assets/home/blshome1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scene.has-words{
+  background-image: url("../assets/home/blshome.png");
+}
+
+/* =========================
+   SPRAY TITLE
+   ========================= */
+
+.spray-title{
+  position: fixed;
+  left: 8%;
+  top: 42%;
+  width: 520px;
+  height: 180px;
+
+  background-image: url("../assets/home/bls-spray.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+
+  opacity: 0;
+  z-index: 1;
+
+  filter: blur(0.4px) contrast(1.05);
+  transition: opacity 2.4s ease;
+  pointer-events: none;
+}
+
+.spray-title.is-visible{ opacity: 0.55; }
+
+/* =========================
+   DARKNESS OVERLAY
+   ========================= */
+
+.darkness{
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 1;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 2.6s ease;
+}
+
+.darkness.is-flicker{
+  opacity: 0.94;
+  transition: none;
+}
+
+.darkness.is-revealed{
+  opacity: 0.10;
+}
+
+/* =========================
+   LANTERN LIGHT
+   ========================= */
+
+.lantern-light{
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+
+  background: radial-gradient(
+    circle at 120px calc(100% - 120px),
+    rgba(244, 162, 58, 0.70) 0%,
+    rgba(244, 162, 58, 0.36) 24%,
+    rgba(244, 162, 58, 0.18) 44%,
+    rgba(0,0,0,0.70) 74%,
+    rgba(0,0,0,0.94) 100%
+  );
+
+  transition: opacity 0.18s ease;
+}
+
+.lantern-light.is-on{ opacity: 1; }
+
+.lantern-light.is-off{
+  opacity: 0;
+  transition: none;
+}
+
+.lantern-light.is-flicker{
+  transition: none;
+}
+
+.lantern-light.is-revealed{
+  opacity: 0.96;
+  transition: opacity 2.8s ease;
+}
+
+.lantern-light.is-revealed::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at 40% 52%,
+    rgba(244,162,58,0.13) 0%,
+    rgba(244,162,58,0.07) 28%,
+    rgba(0,0,0,0.00) 60%
+  );
+
+  filter: blur(26px);
+  opacity: 1;
+}
+
+/* =========================
+   INVISIBLE HOTSPOTS
+   ========================= */
+
+.hotspots{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.hotspot.rect{
+  position: absolute;
+  left: var(--x1);
+  top: var(--y1);
+  width: calc(var(--x2) - var(--x1));
+  height: calc(var(--y2) - var(--y1));
+  pointer-events: auto;
+
+  background: transparent;
+  opacity: 0;
+  text-decoration: none;
+}
+
+/* Debug mode */
+body.debug-hotspots .hotspot.rect{
+  opacity: 1;
+  background: rgba(255,0,0,0.15);
+  outline: 2px dashed rgba(255,0,0,0.6);
+}
