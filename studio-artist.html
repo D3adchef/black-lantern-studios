@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Artist | Black Lantern Studios</title>
+  <link rel="stylesheet" href="css/studio-artist.css" />
+</head>
+<body>
+
+  <canvas id="constellation-canvas"></canvas>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a class="nav-brand" href="index.html" aria-label="Back to Black Lantern Studios Home">
+      <span class="nav-brand-dot" aria-hidden="true"></span>
+      <span class="nav-brand-text">Black Lantern Studios</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="games-worlds.html" class="nav-link">Games & Worlds</a>
+      <a href="studio-artist.html" class="nav-link is-active">Studio Artist</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="main-hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <strong><span class="highlight-red">Joseph</span>.</strong></h1>
+      <p>Full Stack Developer / Horror Enthusiast</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About the Artist</h2>
+    <div class="about-grid">
+      <div class="about-left">
+        <img src="assets/icons/headshot.png" alt="Headshot" class="headshot" />
+
+        <p class="bio-text">
+          Hi, I’m <strong>Joseph Marquis</strong> — a passionate Full Stack Developer based in Biloxi, MS. I thrive at the intersection of horror, AI, and immersive web design, creating interactive projects that blend technology with storytelling and visual intrigue. Whether I’m coding spooky games, building unique web apps, or experimenting with new tech, I love pushing the boundaries of what the web can do.
+        </p>
+
+        <p class="contact-links">
+          <strong><span class="red-text">Want to connect or work on a project together?</span></strong><br>
+          <a href="mailto:j.marquis@proton.me" class="red-link">Email me</a> &nbsp;|&nbsp;
+          <a href="https://www.linkedin.com/in/joseph-marquis-a52665ab/" target="_blank" class="red-link" rel="noopener noreferrer">LinkedIn</a> &nbsp;|&nbsp;
+          <a href="https://github.com/D3adchef" target="_blank" class="red-link" rel="noopener noreferrer">GitHub</a>
+        </p>
+      </div>
+
+      <div class="about-right">
+        <div class="skills-grid">
+          <div class="col">
+            <img src="assets/icons/html.png" alt="HTML">
+            <img src="assets/icons/css.png" alt="CSS">
+            <img src="assets/icons/javascript.png" alt="JavaScript">
+          </div>
+          <div class="col mid-offset">
+            <img src="assets/icons/github.png" alt="GitHub">
+            <img src="assets/icons/git.png" alt="Git">
+            <img src="assets/icons/python.png" alt="Python">
+            <img src="assets/icons/node.png" alt="Node.js">
+          </div>
+          <div class="col">
+            <img src="assets/icons/react.png" alt="React">
+            <img src="assets/icons/cert1.png" alt="Cert 1">
+            <img src="assets/icons/cert2.png" alt="Cert 2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form" class="contact-form">
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <div class="radio-group">
+        <label><input type="radio" name="contact-method" required /> Phone</label>
+        <label><input type="radio" name="contact-method" required /> Email</label>
+      </div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" required /> Are you human?</label>
+      </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <div id="popup" class="popup">Good luck... Will be contacting you soon.</div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/constellation.js"></script>
+
+  <script>
+    // Contact popup
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const popup = document.getElementById('popup');
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 4000);
+      this.reset();
+    });
+
+    // Mobile nav toggle
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Close menu after clicking a link (mobile)
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.classList.contains("nav-link")) {
+        navLinks.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+</body>
+</html>

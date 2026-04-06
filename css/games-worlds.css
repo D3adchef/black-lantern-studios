@@ -1,0 +1,492 @@
+/* ========================= 
+   ROOT / GLOBAL
+========================= */
+:root {
+  --bg: #07070b;
+  --panel: rgba(8, 9, 14, 0.78);
+  --panel-2: rgba(14, 10, 16, 0.55);
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --text: #f5f5f5;
+  --muted: rgba(255, 255, 255, 0.74);
+
+  --pink: #ff3cbe;
+  --pink-soft: rgba(255, 60, 190, 0.42);
+  --pink-dim: rgba(255, 60, 190, 0.1);
+
+  --green: #00ff9c;
+  --green-dim: rgba(0, 255, 156, 0.16);
+
+  --orange: #f5a623;
+  --orange-dim: rgba(245, 166, 35, 0.14);
+
+  --shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+  --inner-shadow: inset 0 1px 0 rgba(255,255,255,0.03),
+                  inset 0 -18px 30px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  /* ✅ FIXED: allow full tall image + scrolling */
+  background: url("../assets/dungeon.png") top center no-repeat;
+  background-size: 100% auto;
+
+  color: var(--text);
+  font-family: "VT323", monospace;
+  overflow-x: hidden;
+}
+
+/* =========================
+   ATMOSPHERE
+========================= */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025),
+    rgba(255, 255, 255, 0.025) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 45%, rgba(0, 0, 0, 0.76) 100%);
+  pointer-events: none;
+  z-index: 9;
+}
+
+/* =========================
+   HEADER
+========================= */
+.hud {
+  display: flex;
+  justify-content: center;
+  padding: 52px 20px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hud-left {
+  max-width: 880px;
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.82);
+  margin: 0 0 12px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.55);
+}
+
+.title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 0;
+  text-shadow: 0 0 14px rgba(0,0,0,0.55);
+}
+
+.subtitle {
+  max-width: 720px;
+  margin: 18px auto 0;
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+  text-shadow: 0 0 10px rgba(0,0,0,0.55);
+}
+
+/* =========================
+   WRAP
+========================= */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 36px;
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================
+   SECRET BRICK
+========================= */
+.odd-brick {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+.secret-panel {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.secret-panel.hidden {
+  display: none;
+}
+
+.secret-text {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.secret-link {
+  color: var(--pink);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.secret-link:hover {
+  text-shadow: 0 0 10px var(--pink-dim);
+}
+
+/* =========================
+   HALL
+========================= */
+.hall {
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   DOORS
+========================= */
+.doors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  width: 100%;
+}
+
+/* =========================
+   MAIN CARDS
+========================= */
+.door {
+  width: 100%;
+  max-width: 960px;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: none;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    inset 0 -18px 30px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.door::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,0.015), transparent 22%),
+    linear-gradient(to top, rgba(255,120,70,0.03), transparent 30%);
+  pointer-events: none;
+}
+
+.door::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+
+.door:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(255, 80, 140, 0.06),
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    inset 0 -18px 30px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   CARD TOP
+========================= */
+.door-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.door-title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-shadow: 0 0 10px rgba(0,0,0,0.45);
+}
+
+/* =========================
+   STATUS TAGS
+========================= */
+.tag {
+  font-size: 13px;
+  line-height: 1;
+  padding: 7px 12px;
+  border: 1px solid;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.24);
+}
+
+.tag.live {
+  color: var(--green);
+  border-color: rgba(0,255,156,0.7);
+  box-shadow: 0 0 10px var(--green-dim);
+}
+
+.tag.dev {
+  color: var(--orange);
+  border-color: rgba(245,166,35,0.7);
+  box-shadow: 0 0 10px rgba(245, 166, 35, 0.08);
+}
+
+/* =========================
+   IMAGE FRAME
+========================= */
+.portal-frame {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(10, 7, 14, 0.95) 0%, rgba(14, 9, 18, 0.9) 100%);
+  border: 1px solid rgba(255, 110, 200, 0.55);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 0 28px rgba(255, 60, 190, 0.08),
+    0 0 14px rgba(255, 60, 190, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.portal-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 120, 210, 0.12),
+    inset 0 -18px 30px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.portal-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,0.03), transparent 18%),
+    radial-gradient(circle at center, transparent 58%, rgba(255, 60, 190, 0.08));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.portal-img {
+  width: 100%;
+  display: block;
+  max-height: 460px;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.portal-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, transparent 64%, rgba(255, 60, 190, 0.08)),
+    linear-gradient(to top, rgba(8, 8, 14, 0.12), transparent 30%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* =========================
+   CARD BODY TEXT
+========================= */
+.door-text {
+  margin: 20px 0;
+  font-size: 20px;
+  color: var(--muted);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 8px rgba(0,0,0,0.35);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  padding: 12px 18px;
+  font-size: 16px;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.primary {
+  background: var(--orange);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(245,166,35,0.12);
+}
+
+.btn.primary:hover {
+  box-shadow: 0 0 16px var(--orange-dim);
+  transform: translateY(-2px);
+}
+
+.btn.ghost {
+  border: 1px solid var(--border-soft);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.btn.ghost:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text);
+}
+
+.btn.disabled {
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  text-align: center;
+  margin-top: 52px;
+}
+
+.footer-line {
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .door {
+    max-width: 100%;
+  }
+
+  .door-title {
+    font-size: 21px;
+  }
+
+  .door-text {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hud {
+    padding: 38px 16px 16px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-top: 14px;
+  }
+
+  .wrap {
+    padding: 22px 14px 28px;
+  }
+
+  .door {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .door-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .door-title {
+    font-size: 18px;
+  }
+
+  .door-text {
+    font-size: 17px;
+  }
+
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .footer-line,
+  .secret-text,
+  .secret-link {
+    font-size: 16px;
+  }
+}

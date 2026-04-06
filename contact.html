@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Black Lantern Studios</title>
+  <link rel="stylesheet" href="css/contact.css" />
+</head>
+<body>
+  <main class="contact-stage">
+    <img
+      src="assets/contact.png"
+      alt="Black Lantern Studios background"
+      class="contact-full-image"
+    />
+
+    <div class="contact-form-wrapper">
+      <form
+        class="contact-form-advanced"
+        action="mailto:j.marquis504@proton.me"
+        method="post"
+        enctype="text/plain"
+      >
+        <p class="form-subtitle">Black Lantern Transmission</p>
+        <h2>Contact the Studio</h2>
+
+        <p class="form-description">
+          Contact us for more information about the studio, the artist, current projects,
+          or for any work you are interested in having done.
+        </p>
+
+        <div class="form-row">
+          <input type="text" name="First Name" placeholder="First Name *" required />
+          <input type="text" name="Last Name" placeholder="Last Name *" required />
+        </div>
+
+        <div class="form-row">
+          <input type="tel" name="Phone Number" placeholder="Phone Number" />
+          <input type="email" name="Email" placeholder="Email *" required />
+        </div>
+
+        <div class="contact-method">
+          <label class="method-label">Preferred Contact Method</label>
+
+          <div class="radio-group">
+            <label><input type="radio" name="Preferred Contact Method" value="Text"> Text</label>
+            <label><input type="radio" name="Preferred Contact Method" value="Phone"> Phone</label>
+            <label><input type="radio" name="Preferred Contact Method" value="Email" checked> Email</label>
+          </div>
+        </div>
+
+        <button type="submit">Send Inquiry</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

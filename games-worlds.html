@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games & Worlds | Black Lantern Studios</title>
+
+  <!-- Pixel fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/games-worlds.css" />
+</head>
+
+<body>
+  <!-- Atmosphere overlays -->
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <!-- =========================
+       HUD / HEADER
+  ========================= -->
+  <header class="hud">
+    <div class="hud-left">
+      <p class="kicker">BLACK LANTERN STUDIOS</p>
+      <h1 class="title">GAMES &amp; WORLDS</h1>
+      <p class="subtitle">
+        Step into the studio’s active worlds — live builds, evolving systems,
+        and portals still taking shape.
+      </p>
+    </div>
+  </header>
+
+  <!-- =========================
+       MAIN WRAP
+  ========================= -->
+  <main class="wrap">
+
+    <!-- Easter egg brick -->
+    <button id="oddBrick" class="odd-brick" aria-label="A suspicious brick..." title="..."></button>
+
+    <!-- Secret panel -->
+    <section id="secretPanel" class="secret-panel hidden" aria-live="polite">
+      <p class="secret-text">You found a loose brick. Behind it… a warm lantern glow.</p>
+      <a class="secret-link" href="index.html">RETURN TO THE LANTERN</a>
+    </section>
+
+    <!-- =========================
+         DUNGEON HALL
+    ========================= -->
+    <section class="hall">
+
+      <!-- CENTER CONTENT -->
+      <section class="doors">
+
+        <!-- =========================
+             CIRCUS OF NIGHTMARES
+        ========================= -->
+        <article class="door">
+          <div class="door-top">
+            <h2 class="door-title">&gt; CIRCUS OF NIGHTMARES</h2>
+            <span class="tag live">LIVE</span>
+          </div>
+
+          <div class="portal-frame">
+            <img src="assets/circus.png" alt="Circus of Nightmares" class="portal-img" />
+            <div class="portal-glow"></div>
+          </div>
+
+          <p class="door-text">
+            A working world you can enter right now. Explore rooms, uncover story fragments,
+            and survive the show.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn primary"
+               href="https://d3adchef.github.io/circus-of-nightmares/"
+               target="_blank"
+               rel="noreferrer">
+              ENTER THE TENT
+            </a>
+
+            <a class="btn ghost disabled" href="#" aria-disabled="true">
+              DEV NOTES (SOON)
+            </a>
+          </div>
+        </article>
+
+        <!-- =========================
+             CARNAGE PALS
+        ========================= -->
+        <article class="door">
+          <div class="door-top">
+            <h2 class="door-title">&gt; CARNAGE PALS</h2>
+            <span class="tag dev">IN DEVELOPMENT</span>
+          </div>
+
+          <div class="portal-frame">
+            <img src="assets/carnage.png" alt="Carnage Pals" class="portal-img" />
+            <div class="portal-glow"></div>
+          </div>
+
+          <p class="door-text">
+            Tactical horror card battles. HP meets a Fear Meter that rewards momentum
+            and punishes hesitation — until confidence collapses.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn primary"
+               href="https://d3adchef.github.io/CarnageColosseum/battle.html"
+               target="_blank"
+               rel="noreferrer">
+              ENTER THE COLOSSEUM
+            </a>
+
+            <a class="btn ghost disabled" href="#" aria-disabled="true">
+              DEV NOTES (SOON)
+            </a>
+          </div>
+        </article>
+
+      </section>
+
+    </section>
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+    <footer class="footer">
+      <p id="footerLine" class="footer-line">
+        Keep exploring. The dungeon remembers.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="js/games-worlds.js"></script>
+</body>
+</html>
