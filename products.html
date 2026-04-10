@@ -3,182 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | Black Lantern Studios</title>
+  <title>Black Lantern Studios | Products</title>
   <link rel="stylesheet" href="css/products.css" />
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-dot"></span>
-      <span class="brand-text">Black Lantern Studios</span>
+  <!-- 🔥 NAVBAR -->
+  <nav class="global-nav">
+    <a href="products.html">Products</a>
+    <a href="games-worlds.html">Games & Worlds</a>
+    <a href="studio-artist.html">Studio Artist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="products-page">
+    <div class="hotspot-layer">
+      <button class="hotspot ghost-box" data-product="hauntsync" aria-label="Open HauntSync"></button>
+      <button class="hotspot mug21-box" data-product="proof21" aria-label="Open Proof21"></button>
+      <button class="hotspot bsharp-box" data-product="budbalance" aria-label="Open BudBalance"></button>
+      <button class="hotspot leaf-box" data-product="cannalytics" aria-label="Open Cannalytics"></button>
+      <button class="hotspot d20-box" data-product="habitaeffect" aria-label="Open Habit AEffect"></button>
     </div>
 
-    <nav class="nav">
-      <a class="nav-link is-active" href="products.html">Products</a>
-      <a class="nav-link" href="games-worlds.html">Games &amp; Worlds</a>
-      <a class="nav-link" href="studio-artist.html">Studio Artist</a>
-      <a class="nav-link" href="about.html">About</a>
-      <a class="nav-link" href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <section class="product-card-wrap hidden" id="productCardWrap" aria-hidden="true">
+      <div class="product-card-panel">
+        <button class="close-card" id="closeCard" aria-label="Close product card">×</button>
 
-  <main class="wrap">
-    <section class="hero">
-      <p class="kicker">Black Lantern Studios</p>
-      <h1 class="title">Products</h1>
-      <p class="subtitle">
-        A showcase of apps, websites, and digital systems built by Black Lantern Studios.
-        From live tools to in-progress concepts, this page highlights the products we have launched,
-        the platforms we are actively building, and the ideas still taking shape.
-      </p>
-    </section>
+        <p class="product-status" id="productStatus"></p>
+        <h1 id="productTitle"></h1>
+        <p class="product-description" id="productDescription"></p>
 
-    <section class="grid">
+        <div class="product-links" id="productLinks"></div>
 
-      <article class="card featured">
-        <div class="card-top">
-          <div class="card-title">
-            <h2>BudBalance</h2>
-            <span class="chip chip-live">Live</span>
-          </div>
-
-          <p class="card-desc">
-            Cannabis allotment tracking platform built for Mississippi’s rolling 30-day system.
-            Designed to help users track purchases, monitor returning grams, and stay in control
-            of their available allotment.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">Allotment Tracking</span>
-          <span class="tag">Smart Planner</span>
-          <span class="tag">Live Product</span>
-        </div>
-
-        <div class="card-actions">
-          <a
-            class="btn btn-primary"
-            href="https://d3adchef.github.io/BudBalance/#/splash"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit Site
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-top">
-          <div class="card-title">
-            <h2>Habit Æffect</h2>
-            <span class="chip chip-live">Live</span>
-          </div>
-
-          <p class="card-desc">
-            Behavioral coaching platform focused on habit change skills,
-            accountability, and digital resources.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">Website</span>
-          <span class="tag">Coaching</span>
-          <span class="tag">Conversion-focused</span>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn btn-primary" href="#">Visit Site</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-top">
-          <div class="card-title">
-            <h2>Nessa</h2>
-            <span class="chip chip-concept">Concept</span>
-          </div>
-
-          <p class="card-desc">
-            AI companion and safety layer for older adults: reminders, story capture,
-            and caregiver visibility without constant check-ins.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">AI Companion</span>
-          <span class="tag">Reminders</span>
-          <span class="tag">Care Visibility</span>
-        </div>
-
-        <div class="card-actions">
-          <button class="btn btn-disabled" type="button">Coming Soon</button>
-          <button class="btn btn-ghost" type="button">Details</button>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-top">
-          <div class="card-title">
-            <h2>Proof21</h2>
-            <span class="chip chip-concept">Concept</span>
-          </div>
-
-          <p class="card-desc">
-            All-in-one door flow system: scan IDs, pass/fail instantly,
-            take payment, and print wristbands to move lines fast.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">ID Scan</span>
-          <span class="tag">Payments</span>
-          <span class="tag">Wristbands</span>
-        </div>
-
-        <div class="card-actions">
-          <button class="btn btn-disabled" type="button">Coming Soon</button>
-          <button class="btn btn-ghost" type="button">Details</button>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-top">
-          <div class="card-title">
-            <h2>HauntSync</h2>
-            <span class="chip chip-concept">Concept</span>
-          </div>
-
-          <p class="card-desc">
-            Immersive AR layer for tours and attractions: walking tours,
-            haunted houses, escape rooms, and tech that bridges the gap
-            between physical spaces and digital storytelling.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">AR</span>
-          <span class="tag">Events</span>
-          <span class="tag">Immersion</span>
-        </div>
-
-        <div class="card-actions">
-          <button class="btn btn-disabled" type="button">Coming Soon</button>
-          <button class="btn btn-ghost" type="button">Details</button>
-        </div>
-      </article>
-
-    </section>
-
-    <footer class="footer">
-      <div class="footer-left">
-        <span class="footer-mark"></span>
-        <span>© 2026 Black Lantern Studios</span>
+        <img class="product-symbol" id="productSymbol" alt="product symbol" />
       </div>
-
-      <a class="footer-link" href="index.html">Home</a>
-    </footer>
+    </section>
   </main>
 
+  <script>
+    const productData = {
+      hauntsync: {
+        status: "In Development",
+        title: "HauntSync",
+        description:
+          "A fully immersive AR app built for walking tours, haunted houses, escape rooms, and other live events where technology can bridge the gap between the physical space and the story unfolding around you.",
+        links: []
+      },
+      proof21: {
+        status: "In Development",
+        title: "Proof21",
+        description:
+          "A door and ID verification platform designed for bars, venues, and nightlife operations. Proof21 is being developed to streamline age checks, entry control, payment flow, and accountability in one connected system.",
+        links: []
+      },
+      budbalance: {
+        status: "Live",
+        title: "BudBalance",
+        description:
+          "A cannabis allotment tracking tool built to help users monitor purchases, understand rolling limits, and plan smarter. Live now on GitHub, with Apple App Store and Google Play rollout continuing through active testing and release preparation.",
+        links: [
+          {
+            label: "Visit Site",
+            url: "https://d3adchef.github.io/BudBalance/"
+          }
+        ]
+      },
+      cannalytics: {
+        status: "In Development",
+        title: "Cannalytics",
+        description:
+          "A cannabis intelligence and journal platform built to track product details, terpene profiles, THC data, and personal likes and dislikes. The long-term goal is smarter shopping guidance based on your preferences and the dispensary you are standing in.",
+        links: []
+      },
+      habitaeffect: {
+        status: "Live",
+        title: "Habit AEffect",
+        description:
+          "A behavioral coaching platform led by Dr. Jen, a professor and habit coach who specializes in supporting individuals with neurodivergence-related challenges. Habit AEffect is designed to provide structure, guidance, and practical support for meaningful personal growth.",
+        links: [
+          {
+            label: "Visit Site",
+            url: "https://habitaeffect.com/"
+          }
+        ]
+      }
+    };
+
+    const symbolMap = {
+      hauntsync: "ghost.png",
+      proof21: "proof21.png",
+      budbalance: "b3.png",
+      cannalytics: "leaf.png",
+      habitaeffect: "d20.png"
+    };
+
+    const hotspots = document.querySelectorAll(".hotspot");
+    const cardWrap = document.getElementById("productCardWrap");
+    const closeCard = document.getElementById("closeCard");
+
+    const productStatus = document.getElementById("productStatus");
+    const productTitle = document.getElementById("productTitle");
+    const productDescription = document.getElementById("productDescription");
+    const productLinks = document.getElementById("productLinks");
+    const productSymbol = document.getElementById("productSymbol");
+
+    let isClosing = false;
+
+    function populateCard(productKey) {
+      const product = productData[productKey];
+      if (!product) return;
+
+      productStatus.textContent = product.status;
+      productTitle.textContent = product.title;
+      productDescription.textContent = product.description;
+
+      productLinks.innerHTML = "";
+
+      product.links.forEach((link) => {
+        const a = document.createElement("a");
+        a.href = link.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.className = "product-link-btn";
+        a.textContent = link.label;
+        productLinks.appendChild(a);
+      });
+
+      productSymbol.src = `assets/${symbolMap[productKey]}`;
+      productSymbol.alt = `${product.title} symbol`;
+    }
+
+    function openCard(productKey) {
+      populateCard(productKey);
+
+      cardWrap.classList.remove("hidden", "dematerialize");
+      cardWrap.classList.add("materialize");
+      cardWrap.setAttribute("aria-hidden", "false");
+      isClosing = false;
+    }
+
+    function closeProductCard() {
+      if (cardWrap.classList.contains("hidden") || isClosing) return;
+
+      isClosing = true;
+      cardWrap.classList.remove("materialize");
+      cardWrap.classList.add("dematerialize");
+      cardWrap.setAttribute("aria-hidden", "true");
+
+      setTimeout(() => {
+        cardWrap.classList.add("hidden");
+        cardWrap.classList.remove("dematerialize");
+        isClosing = false;
+      }, 950);
+    }
+
+    hotspots.forEach((hotspot) => {
+      hotspot.addEventListener("click", () => {
+        const productKey = hotspot.dataset.product;
+        openCard(productKey);
+      });
+    });
+
+    closeCard.addEventListener("click", closeProductCard);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeProductCard();
+      }
+    });
+  </script>
 </body>
 </html>

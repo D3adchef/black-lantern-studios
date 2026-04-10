@@ -1,6 +1,7 @@
 :root{
-  --ink:#14110f;
-  --ink-strong:#0f0c0a;
+  --ink:#1a120b;
+  --ink-soft:#241811;
+  --rule:rgba(67, 46, 27, 0.42);
 }
 
 /* =========================
@@ -8,306 +9,326 @@
 ========================= */
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html,
 body{
-  margin:0;
-  min-height:100%;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
 }
 
 body{
-  font-family:"Inter", sans-serif;
-  color:var(--ink);
-  background:#ccb58d;
-  overflow-x:hidden;
-}
-
-/* subtle paper grain */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(75,55,32,.018) 0,
-      rgba(75,55,32,.018) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  opacity:.5;
-  z-index:1;
-}
-
-.page{
-  position:relative;
-  z-index:2;
+  font-family:"Cormorant Garamond", serif;
 }
 
 /* =========================
-   NAV
+   STAGE
 ========================= */
-.nav{
-  width:calc(100% - 32px);
-  margin:18px 16px 0;
-  padding:12px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-radius:999px;
-  background:rgba(231,221,202,.72);
-  border:1px solid rgba(63,48,35,.18);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:700;
-  font-size:.9rem;
-}
-
-.brand-mark{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:radial-gradient(circle, #f4e1bf, #7b4c1d);
-}
-
-.nav-links{
-  display:flex;
-  gap:14px;
-  font-size:.85rem;
-}
-
-.nav-links a{
-  color:var(--ink);
-  text-decoration:none;
-}
-
-.nav-links a:hover{
-  text-decoration:underline;
-}
-
-/* =========================
-   PAPER
-========================= */
-.paper-wrap{
-  width:100%;
-  margin:20px 0 36px;
-}
-
-.newspaper-layout{
+.about-stage{
   position:relative;
   width:100%;
-}
-
-/* IMPORTANT:
-   Let the full newspaper image render naturally.
-   Do NOT absolutely position this or use object-fit: cover.
-*/
-.paper-bg{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-/* =========================
-   STORY BLOCKS
-========================= */
-.story{
-  position:absolute;
-  z-index:2;
-  background:rgba(227, 211, 183, 0.10);
-  border:1px solid rgba(65,48,31,0.05);
-  box-shadow:0 4px 10px rgba(58, 40, 22, 0.05);
-  padding:12px 14px 10px;
+  height:100vh;
+  background:#000;
   overflow:hidden;
 }
 
-.story::before{
-  content:"";
+/* =========================
+   SPREAD WRAP
+========================= */
+.about-spread{
+  position:absolute;
+  top:0;
+  left:50%;
+  height:100%;
+  width:auto;
+  transform:translateX(-50%) scaleX(1.18);
+  transform-origin:top center;
+}
+
+.about-full-image{
+  display:block;
+  height:100%;
+  width:auto;
+  max-width:none;
+}
+
+.about-overlay{
   position:absolute;
   inset:0;
-  pointer-events:none;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(80,60,40,.015) 0,
-      rgba(80,60,40,.015) 1px,
-      transparent 1px,
-      transparent 5px
-    );
-}
-
-.story > *{
-  position:relative;
-  z-index:1;
+  width:100%;
+  height:100%;
 }
 
 /* =========================
-   TYPOGRAPHY
+   PRINT STYLE
 ========================= */
-.story-label{
-  margin:0 0 5px;
-  font-family:"Cormorant Garamond", serif;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:.72rem;
-  color:#3a2d24;
+.print-card{
+  position:absolute;
+  color:var(--ink);
+  padding:0.35rem 0.45rem;
+  background:transparent;
+  border-top:1px solid var(--rule);
 }
 
-.story-number{
-  margin:0 0 5px;
-  font-family:"Cormorant Garamond", serif;
-  font-size:.95rem;
-  color:#3a2d24;
-}
-
-.story h2,
-.story h3{
-  margin:0 0 6px;
+.print-card h2,
+.print-card h3{
   font-family:"Cinzel", serif;
-  color:var(--ink-strong);
-  text-shadow:0 0 1px rgba(0,0,0,0.2);
+  color:var(--ink);
 }
 
-.story h2{
-  font-size:clamp(1.4rem, 2vw, 2rem);
+.print-card h2{
+  font-size:1.7rem;
+  line-height:1.08;
+  margin-bottom:0.45rem;
 }
 
-.story h3{
-  font-size:.98rem;
+.print-card h3{
+  font-size:1.05rem;
+  line-height:1.08;
+  margin-bottom:0.28rem;
 }
 
-.story p{
-  margin:0;
-  font-size:.92rem;
-  line-height:1.45;
-  color:#1b1512;
-}
-
-.story-note blockquote{
-  margin:0 0 10px;
-  padding:0;
-  border:none;
-  font-family:"Inter", sans-serif;
+.print-card p{
   font-size:1rem;
-  line-height:1.45;
-  color:#1b1512;
+  line-height:1.34;
+  color:var(--ink-soft);
 }
 
 /* =========================
-   LEAD STORY
+   SECTION LABEL
 ========================= */
-.story-lead{
-  top:36%;
-  left:5%;
-  width:90%;
-  padding:16px 18px 14px;
-}
-
-.story-lead h2{
-  font-size:clamp(1.6rem, 2.3vw, 2.2rem);
-}
-
-/* =========================
-   GRID POSITIONS
-========================= */
-.story-left{
-  top:47%;
-  left:5.5%;
-  width:42%;
-}
-
-.story-right{
-  top:47%;
-  right:5.5%;
-  width:42%;
-}
-
-.brief-1{
-  top:54%;
-  left:5.5%;
-  width:26%;
-}
-
-.brief-2{
-  top:54%;
-  left:37%;
-  width:26%;
-}
-
-.brief-3{
-  top:54%;
-  right:5.5%;
-  width:26%;
-}
-
-.story-bottom-left{
-  top:62%;
-  left:5.5%;
-  width:42%;
-}
-
-.story-bottom-right{
-  top:62%;
-  right:5.5%;
-  width:42%;
-}
-
-/* restored note */
-.story-note{
-  top:76.5%;
-  left:5.5%;
-  width:89%;
+.section-label{
+  width:100%;
   text-align:center;
-  padding:10px 14px 14px;
+  font-family:"Cinzel", serif;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:0.35rem;
+  position:relative;
+}
+
+.section-label::before,
+.section-label::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:32%;
+  height:1px;
+  background:var(--rule);
+}
+
+.section-label::before{
+  left:0;
+}
+
+.section-label::after{
+  right:0;
 }
 
 /* =========================
-   MOBILE
+   CARD POSITIONS
 ========================= */
-@media (max-width: 760px){
-  .nav{
-    width:calc(100% - 20px);
-    margin:14px 10px 0;
-    padding:10px 12px;
-    gap:12px;
-    flex-direction:column;
-    align-items:flex-start;
-    border-radius:24px;
+
+/* LEFT PAGE */
+.lead-story{
+  left:4.8%;
+  top:44.6%;
+  width:43.8%;
+}
+
+.why-exists{
+  left:4.9%;
+  top:66%;
+  width:20.4%;
+}
+
+.build-intent{
+  left:27.8%;
+  top:66%;
+  width:20.4%;
+}
+
+/* RIGHT PAGE */
+.give-identity{
+  left:53.4%;
+  top:24%;
+  width:18.8%;
+}
+
+.cross-real{
+  left:74.6%;
+  top:24%;
+  width:18.8%;
+}
+
+.publishers-note{
+  left:53.2%;
+  top:44%;
+  width:40.8%;
+  text-align:center;
+  border-bottom:1px solid var(--rule);
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+}
+
+.publishers-note p{
+  font-size:1.12rem;
+  line-height:1.34;
+  color:#20150e;
+}
+
+/* =========================
+   GLOBAL NAVBAR
+========================= */
+.global-nav{
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  z-index:100;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:2rem;
+  padding:0.6rem 2rem;
+  background:transparent;
+}
+
+.global-nav a{
+  color:#ffffff;
+  text-decoration:none;
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:0.8rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  transition:all 0.25s ease;
+}
+
+.global-nav a:hover{
+  color:rgba(255, 210, 140, 0.9);
+  transform:translateY(-1px);
+  text-shadow:0 0 6px rgba(255, 210, 140, 0.3);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1400px){
+  .about-spread{
+    transform:translateX(-50%) scaleX(1.12);
   }
 
-  .nav-links{
-    flex-wrap:wrap;
-    gap:10px;
+  .print-card h2{
+    font-size:1.45rem;
   }
 
-  .newspaper-layout{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+  .print-card h3{
+    font-size:0.95rem;
   }
 
-  .paper-bg{
+  .print-card p{
+    font-size:0.9rem;
+  }
+
+  .publishers-note p{
+    font-size:1rem;
+  }
+}
+
+@media (max-width: 1100px){
+  .about-spread{
+    transform:translateX(-50%) scaleX(1.02);
+  }
+
+  .print-card h2{
+    font-size:1.2rem;
+  }
+
+  .print-card h3{
+    font-size:0.82rem;
+  }
+
+  .print-card p{
+    font-size:0.8rem;
+    line-height:1.22;
+  }
+
+  .section-label{
+    font-size:0.86rem;
+  }
+
+  .publishers-note p{
+    font-size:0.88rem;
+  }
+}
+
+@media (max-width: 900px){
+  html,
+  body{
+    overflow:auto;
+  }
+
+  .about-stage{
+    height:auto;
+    min-height:100vh;
+    padding-top:72px;
+  }
+
+  .about-spread{
+    position:relative;
+    top:auto;
+    left:auto;
+    transform:none;
     width:100%;
     height:auto;
   }
 
-  .story{
-    position:relative;
-    width:calc(100% - 16px);
-    margin:0 8px;
-    left:auto;
-    right:auto;
-    top:auto;
-    background:rgba(229,214,188,0.85);
+  .about-full-image{
+    width:100%;
+    height:auto;
   }
 
-  .paper-wrap{
-    margin:20px 0 24px;
+  .about-overlay{
+    position:absolute;
+    inset:0;
+  }
+
+  .print-card{
+    padding:0.2rem 0.25rem;
+  }
+
+  .print-card h2{
+    font-size:1rem;
+  }
+
+  .print-card h3{
+    font-size:0.72rem;
+  }
+
+  .print-card p{
+    font-size:0.65rem;
+    line-height:1.15;
+  }
+
+  .section-label{
+    font-size:0.72rem;
+  }
+
+  .publishers-note p{
+    font-size:0.7rem;
+  }
+
+  .global-nav{
+    gap:1rem;
+    padding:0.55rem 1rem;
+  }
+
+  .global-nav a{
+    font-size:0.72rem;
   }
 }

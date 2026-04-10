@@ -38,13 +38,45 @@ body {
 }
 
 body {
-  /* ✅ FIXED: allow full tall image + scrolling */
-  background: url("../assets/dungeon.png") top center no-repeat;
-  background-size: 100% auto;
-
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)),
+    url("../assets/dungeon.png") center center / cover no-repeat fixed;
   color: var(--text);
   font-family: "VT323", monospace;
   overflow-x: hidden;
+}
+
+/* =========================
+   GLOBAL NAVBAR
+========================= */
+.global-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.6rem 2rem;
+  background: transparent;
+}
+
+.global-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.global-nav a:hover {
+  color: rgba(255, 210, 140, 0.9);
+  transform: translateY(-1px);
+  text-shadow: 0 0 6px rgba(255, 210, 140, 0.3);
 }
 
 /* =========================
@@ -436,6 +468,16 @@ body {
 
   .subtitle {
     font-size: 17px;
+  }
+
+  .global-nav {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .global-nav a {
+    font-size: 0.72rem;
   }
 }
 

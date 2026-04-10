@@ -8,28 +8,15 @@
 </head>
 <body>
 
+  <nav class="global-nav">
+    <a href="products.html">Products</a>
+    <a href="games-worlds.html">Games &amp; Worlds</a>
+    <a href="studio-artist.html">Studio Artist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
   <canvas id="constellation-canvas"></canvas>
-
-  <!-- Navbar -->
-  <header class="navbar">
-    <a class="nav-brand" href="index.html" aria-label="Back to Black Lantern Studios Home">
-      <span class="nav-brand-dot" aria-hidden="true"></span>
-      <span class="nav-brand-text">Black Lantern Studios</span>
-    </a>
-
-    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-      ☰
-    </button>
-
-    <nav class="nav-links" aria-label="Primary Navigation">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="products.html" class="nav-link">Products</a>
-      <a href="games-worlds.html" class="nav-link">Games & Worlds</a>
-      <a href="studio-artist.html" class="nav-link is-active">Studio Artist</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-  </header>
 
   <!-- Hero -->
   <section id="main-hero">
@@ -111,23 +98,6 @@
       popup.classList.add('show');
       setTimeout(() => popup.classList.remove('show'), 4000);
       this.reset();
-    });
-
-    // Mobile nav toggle
-    const toggleBtn = document.querySelector(".nav-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    toggleBtn.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("is-open");
-      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-
-    // Close menu after clicking a link (mobile)
-    navLinks.addEventListener("click", (e) => {
-      if (e.target.classList.contains("nav-link")) {
-        navLinks.classList.remove("is-open");
-        toggleBtn.setAttribute("aria-expanded", "false");
-      }
     });
   </script>
 </body>

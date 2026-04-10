@@ -2,56 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact | Black Lantern Studios</title>
   <link rel="stylesheet" href="css/contact.css" />
 </head>
 <body>
-  <main class="contact-stage">
-    <img
-      src="assets/contact.png"
-      alt="Black Lantern Studios background"
-      class="contact-full-image"
-    />
 
-    <div class="contact-form-wrapper">
-      <form
-        class="contact-form-advanced"
-        action="mailto:j.marquis504@proton.me"
-        method="post"
-        enctype="text/plain"
-      >
-        <p class="form-subtitle">Black Lantern Transmission</p>
-        <h2>Contact the Studio</h2>
+  <nav class="global-nav">
+    <a href="products.html">Products</a>
+    <a href="games-worlds.html">Games & Worlds</a>
+    <a href="studio-artist.html">Studio Artist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-        <p class="form-description">
-          Contact us for more information about the studio, the artist, current projects,
-          or for any work you are interested in having done.
+  <div class="ambient-light"></div>
+  <div class="page-fade"></div>
+
+  <main class="contact-page">
+    <section class="contact-form-wrap materialize" id="formWrap">
+      <div class="contact-form-panel">
+        <h1>Contact Us</h1>
+        <p class="contact-intro">
+          Use the form below to summon Black Lantern Studios.
         </p>
 
-        <div class="form-row">
-          <input type="text" name="First Name" placeholder="First Name *" required />
-          <input type="text" name="Last Name" placeholder="Last Name *" required />
-        </div>
-
-        <div class="form-row">
-          <input type="tel" name="Phone Number" placeholder="Phone Number" />
-          <input type="email" name="Email" placeholder="Email *" required />
-        </div>
-
-        <div class="contact-method">
-          <label class="method-label">Preferred Contact Method</label>
-
-          <div class="radio-group">
-            <label><input type="radio" name="Preferred Contact Method" value="Text"> Text</label>
-            <label><input type="radio" name="Preferred Contact Method" value="Phone"> Phone</label>
-            <label><input type="radio" name="Preferred Contact Method" value="Email" checked> Email</label>
+        <form class="contact-form" id="contactForm" action="#" method="post">
+          <div class="form-field">
+            <input type="text" name="First Name" placeholder="First Name" required />
           </div>
-        </div>
 
-        <button type="submit">Send Inquiry</button>
-      </form>
-    </div>
+          <div class="form-field">
+            <input type="text" name="Last Name" placeholder="Last Name" required />
+          </div>
+
+          <div class="form-field">
+            <input type="tel" name="Phone Number" placeholder="Phone Number" />
+          </div>
+
+          <div class="form-field">
+            <input type="email" name="Email" placeholder="Email" required />
+          </div>
+
+          <fieldset class="preferred-contact">
+            <legend>Preferred Contact Method</legend>
+
+            <label class="radio-option">
+              <input type="radio" name="Preferred Contact" value="Phone" />
+              <span>Phone</span>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" name="Preferred Contact" value="Text" />
+              <span>Text</span>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" name="Preferred Contact" value="Email" checked />
+              <span>Email</span>
+            </label>
+          </fieldset>
+
+          <button type="submit" class="summon-btn">Summon</button>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const light = document.querySelector(".ambient-light");
+    const fadeLayer = document.querySelector(".page-fade");
+    const contactForm = document.getElementById("contactForm");
+    const formWrap = document.getElementById("formWrap");
+
+    let breathingStopped = false;
+    let summonMode = false;
+    let breathLoopId = 0;
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function setLight(opacity, duration) {
+      light.style.transition = `opacity ${duration}ms ease-in-out`;
+      light.style.opacity = opacity;
+    }
+
+    function getNormalBreathingMode() {
+      const modeRoll = Math.random();
+
+      if (modeRoll < 0.25) {
+        return {
+          minOpacity: 0.08,
+          maxOpacity: 0.20,
+          minDuration: 500,
+          maxDuration: 1100,
+          cycles: Math.floor(rand(3, 6))
+        };
+      } else if (modeRoll < 0.50) {
+        return {
+          minOpacity: 0.12,
+          maxOpacity: 0.34,
+          minDuration: 450,
+          maxDuration: 950,
+          cycles: Math.floor(rand(3, 6))
+        };
+      } else if (modeRoll < 0.75) {
+        return {
+          minOpacity: 0.06,
+          maxOpacity: 0.16,
+          minDuration: 1800,
+          maxDuration: 3600,
+          cycles: Math.floor(rand(2, 4))
+        };
+      } else {
+        return {
+          minOpacity: 0.14,
+          maxOpacity: 0.32,
+          minDuration: 2200,
+          maxDuration: 4200,
+          cycles: Math.floor(rand(2, 4))
+        };
+      }
+    }
+
+    function getSummonBreathingMode() {
+      const modeRoll = Math.random();
+
+      if (modeRoll < 0.34) {
+        return {
+          minOpacity: 0.12,
+          maxOpacity: 0.68,
+          minDuration: 120,
+          maxDuration: 260,
+          cycles: Math.floor(rand(5, 9))
+        };
+      } else if (modeRoll < 0.68) {
+        return {
+          minOpacity: 0.16,
+          maxOpacity: 0.82,
+          minDuration: 90,
+          maxDuration: 220,
+          cycles: Math.floor(rand(6, 10))
+        };
+      } else {
+        return {
+          minOpacity: 0.10,
+          maxOpacity: 0.58,
+          minDuration: 180,
+          maxDuration: 360,
+          cycles: Math.floor(rand(4, 8))
+        };
+      }
+    }
+
+    function runBreathingLoop() {
+      const currentLoop = ++breathLoopId;
+      if (breathingStopped) return;
+
+      const mode = summonMode ? getSummonBreathingMode() : getNormalBreathingMode();
+
+      let step = 0;
+      let high = false;
+
+      function breathe() {
+        if (breathingStopped || currentLoop !== breathLoopId) return;
+
+        if (step >= mode.cycles * 2) {
+          const nextDelay = summonMode ? rand(20, 90) : rand(250, 900);
+          setTimeout(() => {
+            if (!breathingStopped && currentLoop === breathLoopId) {
+              runBreathingLoop();
+            }
+          }, nextDelay);
+          return;
+        }
+
+        const target = high
+          ? rand(mode.minOpacity, mode.maxOpacity)
+          : rand(Math.max(0.04, mode.minOpacity * 0.65), mode.minOpacity + 0.03);
+
+        const duration = rand(mode.minDuration, mode.maxDuration);
+
+        setLight(target.toFixed(2), duration);
+
+        high = !high;
+        step++;
+
+        setTimeout(breathe, duration);
+      }
+
+      breathe();
+    }
+
+    light.style.opacity = "0.12";
+    runBreathingLoop();
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (document.body.classList.contains("submitting")) return;
+      document.body.classList.add("submitting");
+
+      formWrap.classList.remove("materialize");
+      formWrap.classList.add("dematerialize");
+
+      summonMode = true;
+      runBreathingLoop();
+
+      setTimeout(() => {
+        fadeLayer.classList.add("active");
+      }, 3800);
+
+      setTimeout(() => {
+        breathingStopped = true;
+        window.location.href = "index.html";
+      }, 5000);
+    });
+  </script>
 </body>
 </html>
