@@ -3,27 +3,46 @@
   --lantern: rgba(244, 162, 58, 1);
 }
 
-*{ box-sizing: border-box; }
+*{
+  box-sizing: border-box;
+}
 
-html, body{
+html,
+body{
   height: 100%;
   margin: 0;
   background: var(--bg);
   overflow: hidden;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+/* =========================
+   MOBILE GATE
+========================= */
+
+.mobile-gate{
+  display: none;
 }
 
 /* =========================
    BACKGROUND SCENE
-   ========================= */
+========================= */
 
 .scene{
   position: fixed;
   inset: 0;
+
   background-image: url("../assets/home/blshome1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   z-index: 0;
   pointer-events: none;
 }
@@ -34,12 +53,14 @@ html, body{
 
 /* =========================
    SPRAY TITLE
-   ========================= */
+========================= */
 
 .spray-title{
   position: fixed;
+
   left: 8%;
   top: 42%;
+
   width: 520px;
   height: 180px;
 
@@ -49,27 +70,39 @@ html, body{
   background-position: left center;
 
   opacity: 0;
+
   z-index: 1;
 
   filter: blur(0.4px) contrast(1.05);
+
   transition: opacity 2.4s ease;
+
   pointer-events: none;
 }
 
-.spray-title.is-visible{ opacity: 0.55; }
+.spray-title.is-visible{
+  opacity: 0.55;
+}
 
 /* =========================
    DARKNESS OVERLAY
-   ========================= */
+========================= */
 
 .darkness{
   position: fixed;
   inset: 0;
+
   background: black;
+
   opacity: 1;
+
   z-index: 2;
+
   pointer-events: none;
+
   transition: opacity 2.6s ease;
+
+  will-change: opacity;
 }
 
 .darkness.is-flicker{
@@ -83,13 +116,16 @@ html, body{
 
 /* =========================
    LANTERN LIGHT
-   ========================= */
+========================= */
 
 .lantern-light{
   position: fixed;
   inset: 0;
+
   z-index: 3;
+
   pointer-events: none;
+
   opacity: 0;
 
   background: radial-gradient(
@@ -102,9 +138,13 @@ html, body{
   );
 
   transition: opacity 0.18s ease;
+
+  will-change: opacity;
 }
 
-.lantern-light.is-on{ opacity: 1; }
+.lantern-light.is-on{
+  opacity: 1;
+}
 
 .lantern-light.is-off{
   opacity: 0;
@@ -122,8 +162,10 @@ html, body{
 
 .lantern-light.is-revealed::after{
   content: "";
+
   position: fixed;
   inset: 0;
+
   pointer-events: none;
 
   background: radial-gradient(
@@ -134,36 +176,223 @@ html, body{
   );
 
   filter: blur(26px);
+
   opacity: 1;
 }
 
 /* =========================
    INVISIBLE HOTSPOTS
-   ========================= */
+========================= */
 
 .hotspots{
   position: fixed;
   inset: 0;
+
   z-index: 50;
+
   pointer-events: none;
 }
 
 .hotspot.rect{
   position: absolute;
+
   left: var(--x1);
   top: var(--y1);
+
   width: calc(var(--x2) - var(--x1));
   height: calc(var(--y2) - var(--y1));
+
   pointer-events: auto;
 
   background: transparent;
+
   opacity: 0;
+
   text-decoration: none;
 }
 
 /* Debug mode */
+
 body.debug-hotspots .hotspot.rect{
   opacity: 1;
   background: rgba(255,0,0,0.15);
   outline: 2px dashed rgba(255,0,0,0.6);
+}
+
+/* =========================
+   DESKTOP HINT
+========================= */
+
+.desktop-hint{
+  position: fixed;
+
+  left: 50%;
+  bottom: 28px;
+
+  transform: translateX(-50%);
+
+  z-index: 80;
+
+  max-width: min(760px, 90vw);
+
+  margin: 0;
+
+  color: rgba(255, 214, 140, 0.92);
+
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+
+  opacity: 0;
+
+  animation: hintFadeIn 2s ease forwards;
+  animation-delay: 5.8s;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.75),
+    0 0 8px rgba(0,0,0,0.45);
+
+  pointer-events: none;
+}
+
+@keyframes hintFadeIn{
+  from{
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE EXPERIENCE GATE
+========================= */
+
+@media (max-width: 768px){
+
+  html,
+  body{
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .scene,
+  .spray-title,
+  .darkness,
+  .lantern-light,
+  .hotspots,
+  .desktop-hint{
+    display: none;
+  }
+
+  .mobile-gate{
+    min-height: 100vh;
+
+    padding: 44px 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+      radial-gradient(circle at center, rgba(244, 162, 58, 0.14), transparent 38%),
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 34%),
+      #030303;
+
+    color: #f6efe5;
+
+    text-align: center;
+  }
+
+  .mobile-gate-logo{
+    width: min(300px, 78vw);
+
+    margin-bottom: 28px;
+
+    filter:
+      drop-shadow(0 0 22px rgba(244, 162, 58, 0.55))
+      drop-shadow(0 0 60px rgba(244, 162, 58, 0.25));
+
+    animation: mobileLanternFloat 4.8s ease-in-out infinite;
+  }
+
+  .mobile-gate h1{
+    margin: 0 0 16px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2rem, 10vw, 3.2rem);
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+  }
+
+  .mobile-gate p{
+    max-width: 330px;
+
+    margin: 0 0 28px;
+
+    color: rgba(246, 239, 229, 0.76);
+
+    line-height: 1.7;
+
+    font-size: 1rem;
+  }
+
+  .mobile-gate a{
+    color: #f4a23a;
+
+    text-decoration: none;
+
+    border: 1px solid rgba(244, 162, 58, 0.48);
+
+    padding: 12px 18px;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.34);
+
+    box-shadow: 0 0 24px rgba(244, 162, 58, 0.16);
+
+    transition:
+      color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .mobile-gate a:hover{
+    color: #fff2d8;
+
+    border-color: rgba(244, 162, 58, 0.8);
+
+    box-shadow: 0 0 28px rgba(244, 162, 58, 0.26);
+
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes mobileLanternFloat{
+  0%,
+  100%{
+    transform: translateY(0);
+  }
+
+  50%{
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+
+  .desktop-hint,
+  .mobile-gate-logo{
+    animation: none;
+  }
 }

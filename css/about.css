@@ -81,19 +81,19 @@ body{
 }
 
 .print-card h2{
-  font-size:1.7rem;
+  font-size:1.65rem;
   line-height:1.08;
   margin-bottom:0.45rem;
 }
 
 .print-card h3{
-  font-size:1.05rem;
+  font-size:1.02rem;
   line-height:1.08;
   margin-bottom:0.28rem;
 }
 
 .print-card p{
-  font-size:1rem;
+  font-size:0.98rem;
   line-height:1.34;
   color:var(--ink-soft);
 }
@@ -177,7 +177,7 @@ body{
 }
 
 .publishers-note p{
-  font-size:1.12rem;
+  font-size:1.08rem;
   line-height:1.34;
   color:#20150e;
 }
@@ -224,19 +224,19 @@ body{
   }
 
   .print-card h2{
-    font-size:1.45rem;
+    font-size:1.38rem;
   }
 
   .print-card h3{
-    font-size:0.95rem;
+    font-size:0.93rem;
   }
 
   .print-card p{
-    font-size:0.9rem;
+    font-size:0.86rem;
   }
 
   .publishers-note p{
-    font-size:1rem;
+    font-size:0.96rem;
   }
 }
 
@@ -246,24 +246,24 @@ body{
   }
 
   .print-card h2{
-    font-size:1.2rem;
+    font-size:1.14rem;
   }
 
   .print-card h3{
-    font-size:0.82rem;
+    font-size:0.8rem;
   }
 
   .print-card p{
-    font-size:0.8rem;
-    line-height:1.22;
+    font-size:0.76rem;
+    line-height:1.2;
   }
 
   .section-label{
-    font-size:0.86rem;
+    font-size:0.84rem;
   }
 
   .publishers-note p{
-    font-size:0.88rem;
+    font-size:0.84rem;
   }
 }
 
@@ -303,24 +303,24 @@ body{
   }
 
   .print-card h2{
-    font-size:1rem;
+    font-size:0.96rem;
   }
 
   .print-card h3{
-    font-size:0.72rem;
+    font-size:0.7rem;
   }
 
   .print-card p{
-    font-size:0.65rem;
-    line-height:1.15;
+    font-size:0.62rem;
+    line-height:1.12;
   }
 
   .section-label{
-    font-size:0.72rem;
+    font-size:0.7rem;
   }
 
   .publishers-note p{
-    font-size:0.7rem;
+    font-size:0.68rem;
   }
 
   .global-nav{

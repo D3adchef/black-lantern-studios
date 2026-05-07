@@ -10,26 +10,36 @@ let intervalId = null;
 
 /* =========================
    COORDINATE TRACKER
-   ========================= */
+   Local development only
+========================= */
 
-(function setupCoordinateTracker(){
-  document.addEventListener("click", (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    console.log(`coords: --x: ${x.toFixed(2)}%; --y: ${y.toFixed(2)}%;`);
-  });
+const isDev =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key.toLowerCase() === "d") {
-      document.body.classList.toggle("debug-hotspots");
-      console.log("debug-hotspots:", document.body.classList.contains("debug-hotspots"));
-    }
-  });
-})();
+if (isDev) {
+  (function setupCoordinateTracker(){
+    document.addEventListener("click", (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      console.log(`coords: --x: ${x.toFixed(2)}%; --y: ${y.toFixed(2)}%;`);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "d") {
+        document.body.classList.toggle("debug-hotspots");
+        console.log(
+          "debug-hotspots:",
+          document.body.classList.contains("debug-hotspots")
+        );
+      }
+    });
+  })();
+}
 
 /* =========================
    INTRO FLICKER SEQUENCE
-   ========================= */
+========================= */
 
 function flickerPulse(){
   flickers++;
@@ -83,11 +93,12 @@ setTimeout(() => {
 
 /* =========================
    RANDOM LANTERN FLICKER
-   ========================= */
+========================= */
 
 function rand(min, max){
   return Math.random() * (max - min) + min;
 }
+
 function randInt(min, max){
   return Math.floor(rand(min, max + 1));
 }

@@ -275,6 +275,7 @@ body::before {
    TEXT STYLING
 ========================= */
 .product-status {
+  display: inline-block;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -282,6 +283,13 @@ body::before {
   margin-bottom: 1rem;
   position: relative;
   z-index: 2;
+}
+
+.product-status.is-live {
+  color: rgba(132, 255, 171, 0.92);
+  text-shadow:
+    0 0 8px rgba(70, 255, 135, 0.35),
+    0 0 18px rgba(70, 255, 135, 0.16);
 }
 
 .product-card-panel h1 {
@@ -319,6 +327,7 @@ body::before {
 ========================= */
 .product-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 1.5rem;
   position: relative;
@@ -333,14 +342,18 @@ body::before {
   border: 1px solid rgba(215, 194, 150, 0.25);
   text-decoration: none;
   color: #f2eee7;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: all 0.25s ease;
+  background: rgba(0, 0, 0, 0.18);
 }
 
 .product-link-btn:hover {
   transform: translateY(-2px);
+  border-color: rgba(132, 255, 171, 0.35);
+  color: rgba(132, 255, 171, 0.95);
+  box-shadow: 0 0 14px rgba(70, 255, 135, 0.12);
 }
 
 /* =========================

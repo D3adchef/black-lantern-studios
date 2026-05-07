@@ -58,14 +58,22 @@
         links: []
       },
       budbalance: {
-        status: "Live",
+        status: "Live on iOS + Android",
         title: "BudBalance",
         description:
-          "A cannabis allotment tracking tool built to help users monitor purchases, understand rolling limits, and plan smarter. Live now on GitHub, with Apple App Store and Google Play rollout continuing through active testing and release preparation.",
+          "A cannabis tracking utility designed to help users maintain organized personal records, review recent activity, and stay aware of their current rolling 30-day usage. BudBalance is now live on the App Store and Google Play, with a dedicated product site at budbalance-ms.com.",
         links: [
           {
             label: "Visit Site",
-            url: "https://d3adchef.github.io/BudBalance/"
+            url: "https://budbalance-ms.com"
+          },
+          {
+            label: "🍎 App Store",
+            url: "https://apps.apple.com/app/id6761867299"
+          },
+          {
+            label: "▶ Google Play",
+            url: "https://play.google.com/store/apps/details?id=com.blacklanternstudios.budbalance"
           }
         ]
       },
@@ -115,6 +123,13 @@
       if (!product) return;
 
       productStatus.textContent = product.status;
+
+      if (product.status.toLowerCase().includes("live")) {
+        productStatus.classList.add("is-live");
+      } else {
+        productStatus.classList.remove("is-live");
+      }
+
       productTitle.textContent = product.title;
       productDescription.textContent = product.description;
 

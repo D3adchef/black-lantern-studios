@@ -281,6 +281,16 @@ body::before{
   background:rgba(241, 237, 230, 0.88);
 }
 
+/* =========================
+   HONEYPOT SPAM FIELD
+========================= */
+.honeypot-field{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  pointer-events:none;
+}
+
 /* button */
 .summon-btn{
   width:100%;

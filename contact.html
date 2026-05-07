@@ -23,47 +23,102 @@
     <section class="contact-form-wrap materialize" id="formWrap">
       <div class="contact-form-panel">
         <h1>Contact Us</h1>
+
         <p class="contact-intro">
           Use the form below to summon Black Lantern Studios.
         </p>
 
-        <form class="contact-form" id="contactForm" action="#" method="post">
+        <form
+          class="contact-form"
+          id="contactForm"
+          action="https://formspree.io/f/maqvbanz"
+          method="POST"
+        >
+
           <div class="form-field">
-            <input type="text" name="First Name" placeholder="First Name" required />
+            <input
+              type="text"
+              name="First Name"
+              placeholder="First Name"
+              required
+            />
           </div>
 
           <div class="form-field">
-            <input type="text" name="Last Name" placeholder="Last Name" required />
+            <input
+              type="text"
+              name="Last Name"
+              placeholder="Last Name"
+              required
+            />
           </div>
 
           <div class="form-field">
-            <input type="tel" name="Phone Number" placeholder="Phone Number" />
+            <input
+              type="tel"
+              name="Phone Number"
+              placeholder="Phone Number"
+            />
           </div>
 
           <div class="form-field">
-            <input type="email" name="Email" placeholder="Email" required />
+            <input
+              type="email"
+              name="Email"
+              placeholder="Email"
+              required
+            />
           </div>
 
           <fieldset class="preferred-contact">
             <legend>Preferred Contact Method</legend>
 
             <label class="radio-option">
-              <input type="radio" name="Preferred Contact" value="Phone" />
+              <input
+                type="radio"
+                name="Preferred Contact"
+                value="Phone"
+              />
               <span>Phone</span>
             </label>
 
             <label class="radio-option">
-              <input type="radio" name="Preferred Contact" value="Text" />
+              <input
+                type="radio"
+                name="Preferred Contact"
+                value="Text"
+              />
               <span>Text</span>
             </label>
 
             <label class="radio-option">
-              <input type="radio" name="Preferred Contact" value="Email" checked />
+              <input
+                type="radio"
+                name="Preferred Contact"
+                value="Email"
+                checked
+              />
               <span>Email</span>
             </label>
           </fieldset>
 
-          <button type="submit" class="summon-btn">Summon</button>
+          <!-- Honeypot Spam Trap -->
+          <div class="honeypot-field" aria-hidden="true">
+            <label>
+              Leave this field empty
+              <input
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <button type="submit" class="summon-btn">
+            Summon
+          </button>
+
         </form>
       </div>
     </section>
@@ -158,9 +213,12 @@
 
     function runBreathingLoop() {
       const currentLoop = ++breathLoopId;
+
       if (breathingStopped) return;
 
-      const mode = summonMode ? getSummonBreathingMode() : getNormalBreathingMode();
+      const mode = summonMode
+        ? getSummonBreathingMode()
+        : getNormalBreathingMode();
 
       let step = 0;
       let high = false;
@@ -169,20 +227,30 @@
         if (breathingStopped || currentLoop !== breathLoopId) return;
 
         if (step >= mode.cycles * 2) {
-          const nextDelay = summonMode ? rand(20, 90) : rand(250, 900);
+          const nextDelay = summonMode
+            ? rand(20, 90)
+            : rand(250, 900);
+
           setTimeout(() => {
             if (!breathingStopped && currentLoop === breathLoopId) {
               runBreathingLoop();
             }
           }, nextDelay);
+
           return;
         }
 
         const target = high
           ? rand(mode.minOpacity, mode.maxOpacity)
-          : rand(Math.max(0.04, mode.minOpacity * 0.65), mode.minOpacity + 0.03);
+          : rand(
+              Math.max(0.04, mode.minOpacity * 0.65),
+              mode.minOpacity + 0.03
+            );
 
-        const duration = rand(mode.minDuration, mode.maxDuration);
+        const duration = rand(
+          mode.minDuration,
+          mode.maxDuration
+        );
 
         setLight(target.toFixed(2), duration);
 
@@ -201,9 +269,31 @@
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      // Honeypot check
+      const honeypot = contactForm.querySelector(
+        'input[name="_gotcha"]'
+      );
+
+      if (honeypot && honeypot.value.trim() !== "") {
+        return;
+      }
+
       if (document.body.classList.contains("submitting")) return;
+
       document.body.classList.add("submitting");
 
+      // Send form data to Formspree in the background
+      const formData = new FormData(contactForm);
+
+      fetch("https://formspree.io/f/maqvbanz", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      // Animation plays as normal
       formWrap.classList.remove("materialize");
       formWrap.classList.add("dematerialize");
 
@@ -220,5 +310,6 @@
       }, 5000);
     });
   </script>
+
 </body>
 </html>

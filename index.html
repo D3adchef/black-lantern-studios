@@ -16,25 +16,55 @@
   <!-- Favicon (add later if you want) -->
   <!-- <link rel="icon" href="assets/favicon.ico" /> -->
 
+  <link rel="styl<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Black Lantern Studios</title>
+  <meta name="description" content="Black Lantern Studios builds immersive worlds, interactive systems, and dark creative technology experiences." />
+  <meta name="theme-color" content="#050505" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Black Lantern Studios" />
+  <meta property="og:description" content="Enter the lantern light. Explore immersive worlds and interactive systems." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/home.css" />
 </head>
 
 <body>
 
+  <!-- MOBILE GATE -->
+  <div class="mobile-gate">
+    <img src="assets/mobile-lantern.png" alt="Black Lantern Studios lantern" class="mobile-gate-logo" />
+
+    <h1>Black Lantern Studios</h1>
+
+    <p>
+      This experience was built for desktop.<br />
+      Return by lantern light when you can.
+    </p>
+
+    <a href="mailto:contact@blacklanternstudios.studio">
+      Contact the Studio
+    </a>
+  </div>
+
   <!-- ===============================
        BACKGROUND SCENE LAYERS
        =============================== -->
 
-  <!-- Background image scene -->
   <div class="scene"></div>
 
-  <!-- Spray-painted title overlay -->
   <div class="spray-title"></div>
 
-  <!-- Darkness overlay -->
   <div class="darkness"></div>
 
-  <!-- Lantern glow -->
   <div class="lantern-light"></div>
 
   <!-- ===============================
@@ -43,35 +73,30 @@
 
   <div class="hotspots" aria-hidden="true">
 
-    <!-- PRODUCTS -->
     <a class="hotspot rect"
        href="products.html"
        aria-label="Products"
        style="--x1: 7.01%; --x2: 24.32%; --y1: 45.77%; --y2: 53.68%;">
     </a>
 
-    <!-- GAMES & WORLDS -->
     <a class="hotspot rect"
        href="games-worlds.html"
        aria-label="Games & Worlds"
        style="--x1: 9.50%; --x2: 34.26%; --y1: 58.90%; --y2: 65.50%;">
     </a>
 
-    <!-- STUDIO ARTIST -->
     <a class="hotspot rect"
        href="studio-artist.html"
        aria-label="Studio Artist"
        style="--x1: 21.48%; --x2: 39.01%; --y1: 68.00%; --y2: 76.00%;">
     </a>
 
-    <!-- ABOUT -->
     <a class="hotspot rect"
        href="about.html"
        aria-label="About"
        style="--x1: 75%; --x2: 85%; --y1: 32%; --y2: 40%;">
     </a>
 
-    <!-- CONTACT -->
     <a class="hotspot rect"
        href="contact.html"
        aria-label="Contact"
@@ -80,9 +105,11 @@
 
   </div>
 
-  <!-- ===============================
-       SCRIPT
-       =============================== -->
+  <!-- DESKTOP HINT -->
+  <p class="desktop-hint">
+    Explore the catacombs by lantern light. Find new rooms to explore. 
+  </p>
+
   <script src="js/home-intro.js"></script>
 
 </body>
