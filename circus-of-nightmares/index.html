@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Circus of Nightmares</title>
+
+  <!-- Phaser + your scenes -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+  <script src="js/entrancescene.js"></script>
+  <script src="js/mirrorscene.js"></script>
+  <script src="js/storagescene.js"></script>
+  <script src="js/dressingscene.js"></script>
+  <script src="js/exitscene.js"></script>
+  <script src="js/entrancepostgamescene.js"></script>
+  <script src="js/winnerscene.js"></script>
+  <script src="js/lairscene.js"></script>
+  <script src="js/main.js"></script>
+
+  <style>
+    body { margin: 0; background: black; overflow: hidden; }
+    canvas { display: block; margin: 0 auto; }
+
+    /* =============================================
+       80s LED COUNTDOWN CLOCK OVERLAY
+       ============================================= */
+    #game-timer {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 1000;
+
+      /* Outer bezel */
+      background: #111;
+      border: 4px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 8px 14px 10px 14px;
+      box-shadow:
+        0 0 0 2px #444,
+        0 0 0 4px #111,
+        0 0 18px rgba(255, 0, 0, 0.25),
+        inset 0 2px 6px rgba(0, 0, 0, 0.95);
+
+      overflow: hidden;
+      user-select: none;
+      animation: led-flicker 6s infinite;
+    }
+
+    /* "TIME" label at the top of the bezel */
+    #game-timer .timer-label {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      color: #660000;
+      letter-spacing: 5px;
+      text-align: center;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Ghost digits — the dim "88:88" you see behind the real numbers
+       on old LED displays showing all segments lit faintly */
+    #game-timer .timer-ghost {
+      font-family: 'Courier New', monospace;
+      font-size: 46px;
+      font-weight: bold;
+      color: #2a0000;
+      letter-spacing: 6px;
+      line-height: 1;
+      display: block;
+      text-align: center;
+    }
+
+    /* Active digit layer — sits exactly on top of ghost */
+    #game-timer .timer-digits {
+      position: absolute;
+      top: 28px; /* below the label */
+      left: 14px;
+      right: 14px;
+      font-family: 'Courier New', monospace;
+      font-size: 46px;
+      font-weight: bold;
+      color: #ff1a00;
+      text-shadow:
+        0 0 4px #ff2200,
+        0 0 10px #ff000099,
+        0 0 20px #ff000044;
+      letter-spacing: 6px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    /* Blinking colon between minutes and seconds */
+    #game-timer .timer-colon {
+      animation: blink-colon 1s step-end infinite;
+      display: inline-block;
+    }
+
+    /* Scanline overlay — classic CRT feel */
+    #game-timer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.13) 2px,
+        rgba(0, 0, 0, 0.13) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+      border-radius: 6px;
+    }
+
+    /* Flicker — subtle, fires every ~6s so it doesn't get annoying */
+    @keyframes led-flicker {
+      0%, 88%, 91%, 94%, 100% { opacity: 1; }
+      89%  { opacity: 0.75; }
+      90%  { opacity: 1;    }
+      92%  { opacity: 0.88; }
+      93%  { opacity: 1;    }
+    }
+
+    /* Colon blink — synced to 1 second */
+    @keyframes blink-colon {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: 0.08; }
+    }
+
+    /* Warning pulse — turns amber when under 2 minutes */
+    #game-timer.warning .timer-digits {
+      color: #ffaa00;
+      text-shadow:
+        0 0 4px #ffaa00,
+        0 0 10px #ff880066,
+        0 0 20px #ff880033;
+    }
+
+    /* Danger pulse — flashes red when under 30 seconds */
+    #game-timer.danger {
+      animation: led-flicker 6s infinite, danger-pulse 0.6s ease-in-out infinite;
+    }
+    #game-timer.danger .timer-digits {
+      color: #ff0000;
+      text-shadow:
+        0 0 6px #ff0000,
+        0 0 14px #ff0000aa,
+        0 0 28px #ff000066;
+    }
+    @keyframes danger-pulse {
+      0%, 100% { box-shadow:
+        0 0 0 2px #444,
+        0 0 0 4px #111,
+        0 0 18px rgba(255, 0, 0, 0.25),
+        inset 0 2px 6px rgba(0, 0, 0, 0.95); }
+      50% { box-shadow:
+        0 0 0 2px #aa0000,
+        0 0 0 4px #111,
+        0 0 28px rgba(255, 0, 0, 0.7),
+        inset 0 2px 6px rgba(0, 0, 0, 0.95); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LED Clock Timer Overlay -->
+  <div id="game-timer">
+    <div class="timer-label">T I M E</div>
+    <div class="timer-ghost">88:88</div>
+    <div class="timer-digits" id="timer-display">
+      <span id="timer-minutes">10</span><span class="timer-colon">:</span><span id="timer-seconds">00</span>
+    </div>
+  </div>
+
+</body>
+</html>
