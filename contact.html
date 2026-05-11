@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7B0RW1XFX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-B7B0RW1XFX');
+  </script>
+
   <title>Contact | Black Lantern Studios</title>
+
   <link rel="stylesheet" href="css/contact.css" />
 </head>
+
 <body>
 
   <nav class="global-nav">
@@ -20,8 +34,11 @@
   <div class="page-fade"></div>
 
   <main class="contact-page">
+
     <section class="contact-form-wrap materialize" id="formWrap">
+
       <div class="contact-form-panel">
+
         <h1>Contact Us</h1>
 
         <p class="contact-intro">
@@ -71,6 +88,7 @@
           </div>
 
           <fieldset class="preferred-contact">
+
             <legend>Preferred Contact Method</legend>
 
             <label class="radio-option">
@@ -100,12 +118,14 @@
               />
               <span>Email</span>
             </label>
+
           </fieldset>
 
           <!-- Honeypot Spam Trap -->
           <div class="honeypot-field" aria-hidden="true">
             <label>
               Leave this field empty
+
               <input
                 type="text"
                 name="_gotcha"
@@ -269,7 +289,6 @@
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Honeypot check
       const honeypot = contactForm.querySelector(
         'input[name="_gotcha"]'
       );
@@ -282,7 +301,6 @@
 
       document.body.classList.add("submitting");
 
-      // Send form data to Formspree in the background
       const formData = new FormData(contactForm);
 
       fetch("https://formspree.io/f/maqvbanz", {
@@ -293,7 +311,6 @@
         }
       });
 
-      // Animation plays as normal
       formWrap.classList.remove("materialize");
       formWrap.classList.add("dematerialize");
 

@@ -47,26 +47,26 @@ function flickerPulse(){
   darkness.classList.add("is-flicker");
   light.classList.add("is-on");
 
-  setTimeout(() => light.classList.add("is-off"), 140);
-  setTimeout(() => light.classList.remove("is-off"), 260);
-  setTimeout(() => light.classList.add("is-off"), 380);
-  setTimeout(() => light.classList.remove("is-off"), 520);
-  setTimeout(() => light.classList.add("is-off"), 680);
+  setTimeout(() => light.classList.add("is-off"), 90);
+  setTimeout(() => light.classList.remove("is-off"), 170);
+  setTimeout(() => light.classList.add("is-off"), 260);
+  setTimeout(() => light.classList.remove("is-off"), 360);
+  setTimeout(() => light.classList.add("is-off"), 480);
 
   setTimeout(() => {
     darkness.classList.remove("is-flicker");
     light.classList.remove("is-on");
-  }, 820);
+  }, 600);
 
-  if (flickers === 3) {
+  if (flickers === 2) {
     setTimeout(() => {
       scene.classList.add("has-words");
       if (sprayTitle) sprayTitle.classList.add("is-visible");
-    }, 120);
+    }, 80);
   }
 
-  if (flickers >= 3) {
-    setTimeout(reveal, 1200);
+  if (flickers >= 2) {
+    setTimeout(reveal, 450);
   }
 }
 
@@ -84,12 +84,13 @@ function reveal(){
 
   if (hotspotsLayer) hotspotsLayer.style.pointerEvents = "auto";
 
-  setTimeout(startRandomLanternFlicker, 5000);
+  setTimeout(startRandomLanternFlicker, 3500);
 }
 
 setTimeout(() => {
-  intervalId = setInterval(flickerPulse, 2000);
-}, 800);
+  flickerPulse();
+  intervalId = setInterval(flickerPulse, 1200);
+}, 250);
 
 /* =========================
    RANDOM LANTERN FLICKER

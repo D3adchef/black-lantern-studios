@@ -30,16 +30,16 @@ export default function Footer() {
         {/* Socials */}
         <div className="flex justify-center gap-8">
           <a href="https://www.facebook.com/profile.php?id=61586005975347" target="_blank" rel="noopener noreferrer">
-            <img src={facebook} alt="Facebook" className="h-32 hover:scale-110 transition-transform" />
+            <img src={facebook} alt="Facebook" className="h-16 w-16 object-contain hover:scale-110 transition-transform" />
           </a>
           <a href="https://www.linkedin.com/company/110440136/admin/dashboard/" target="_blank" rel="noopener noreferrer">
-            <img src={linkedin} alt="LinkedIn" className="h-32 hover:scale-110 transition-transform" />
+            <img src={linkedin} alt="LinkedIn" className="h-16 w-16 object-contain hover:scale-110 transition-transform" />
           </a>
           <a href="https://www.instagram.com/thehabitaeffect/" target="_blank" rel="noopener noreferrer">
-            <img src={instagram} alt="Instagram" className="h-32 hover:scale-110 transition-transform" />
+            <img src={instagram} alt="Instagram" className="h-16 w-16 object-contain hover:scale-110 transition-transform" />
           </a>
           <a href="https://www.youtube.com/@TheHabitAEffect" target="_blank" rel="noopener noreferrer">
-            <img src={youtube} alt="YouTube" className="h-32 hover:scale-110 transition-transform" />
+            <img src={youtube} alt="YouTube" className="h-16 w-16 object-contain hover:scale-110 transition-transform" />
           </a>
         </div>
 
